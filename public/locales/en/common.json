@@ -3,6 +3,16 @@
   "error-with-status": "A {{statusCode}} error occurred on server",
   "error-without-status": "An error occurred on the server",
   "h1": "A simple example",
-  "title": "Home | next-i18next",
-  "to-second-page": "To second page"
+  "title": "Home | Qnan",
+  "home": "Home",
+  "contact_us": "Contact us",
+  "about_us": "About us",
+  "Qnan": "Qnan",
+  "qnan_desc": "Order meals from local restaurants with fast delivery and real-time tracking.",
+  "about_us_desc": "We are a team of developers who are passionate about creating innovative solutions to improve the lives of people.",
+  "contact_us_desc": "We would love to hear from you. Please contact us using the form below.",
+  "services": "Services",
+  "services_desc": "We offer a wide range of services to meet your needs.",
+  "login": "Login",
+  "become_a_partner": "Become a partner"
 }
