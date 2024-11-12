@@ -1,24 +1,26 @@
-import { useTranslation } from 'next-i18next'
+import { useEffect, useState } from 'react';
 import { getStaticPaths, makeStaticProps } from '../../lib/getStatic'
-
-
-import { Header } from '@/components/header'
-import { Footer } from '@/components/footer'
+import Layout from '@/components/layout'
 
 const Homepage = () => {
-  const { t } = useTranslation(['common', 'footer'])
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return null;
+  }
 
   return (
-    <>
-      <main>
-        <Header heading={t('h1')} title={t('title')} />
-      </main>
-      <Footer />
-    </>
+    <Layout>
+      <div>Jehad</div>
+    </Layout>
   )
 }
 
 export default Homepage
 
-const getStaticProps = makeStaticProps(['common', 'footer'])
+const getStaticProps = makeStaticProps(['common'])
 export { getStaticPaths, getStaticProps }
