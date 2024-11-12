@@ -1,0 +1,8 @@
+{
+  "back-to-home": "العودة للصفحة الرئيسية",
+  "error-with-status": "حدث خطأ في السيرفر {{statusCode}}",
+  "error-without-status": "حدث خطأ في السيرفر",
+  "h1": "مثال بسيط",
+  "title": "الصفحة الرئيسية | next-i18next",
+  "to-second-page": "الذهاب إلى الصفحة الثانية"
+}
