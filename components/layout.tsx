@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { Footer } from './footer'
 import localFont from "next/font/local";
 import { Header } from './header'
+import { dir } from 'i18next';
 
 const geistSans = localFont({
   src: "../public/fonts/GeistVF.woff",
@@ -17,10 +18,10 @@ const geistMono = localFont({
 export default function Layout({ children }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { t } = useTranslation(['common'])
+  const { t, i18n } = useTranslation(['common'])
 
   return (
-    <div className={`${geistSans.variable} ${geistMono.variable}`}>
+    <div dir={dir(i18n.language)} className={`${geistSans.variable} ${geistMono.variable}`}>
       <Header heading={t('h1')} title={t('title')} />
       <main>{children}</main>
       <Footer />
