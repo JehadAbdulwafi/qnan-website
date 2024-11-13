@@ -14,5 +14,8 @@
   "services": "Services",
   "services_desc": "We offer a wide range of services to meet your needs.",
   "login": "Login",
-  "become_a_partner": "Become a partner"
+  "become_a_partner": "Become a partner",
+  "copyright": "Copyright © {{year}} Qnan. All rights reserved.",
+  "app-not-downloaded" :"App not downloaded yet?",
+  "download-now": "Download now!"
 }
