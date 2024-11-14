@@ -7,9 +7,9 @@ export default function Header() {
 
   return (
     <header
-      className={"sticky top-0 z-30 flex h-14 items-center gap-4 py-4 px-4 border-b bg-background sm:static sm:h-auto sm:px-32"}
+      className={"fixed top-0 z-50 flex h-14 items-center bg-white sm:static sm:h-[92px]"}
     >
-      <div className="flex flex-row items-center justify-between flex-1">
+      <div className="flex flex-row items-center justify-between container flex-1">
         <Logo />
         <NavList />
         <Actions />
