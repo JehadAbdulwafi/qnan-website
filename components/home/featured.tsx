@@ -1,8 +1,9 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { FeaturedCarousel } from "./featured-carousel";
+import { Home } from "@/sanity.types";
 
-export default function Featured() {
+export default function Featured({ data }: { data: Home["restaurants"] }) {
   const { t } = useTranslation("common");
   return (
     <section className="section-dark">
@@ -13,7 +14,7 @@ export default function Featured() {
             {t("featured-desc")}
           </p>
         </div>
-        <FeaturedCarousel />
+        <FeaturedCarousel data={data} />
       </div>
     </section>
   );

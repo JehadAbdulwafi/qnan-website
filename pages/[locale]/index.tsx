@@ -7,25 +7,29 @@ import Download from '@/components/home/download';
 import Featured from '@/components/home/featured';
 import Testimonials from '@/components/home/testimonials';
 import Benefits from '@/components/home/benefits';
+import { fetchHomeSection } from '@/lib/queries';
+import { Home } from '@/sanity.types';
+
 
 const Homepage = () => {
-  const [isClient, setIsClient] = useState(false);
+  const [data, setData] = useState<Home>()
 
   useEffect(() => {
-    setIsClient(true);
+    (async () => {
+      const res: Home = await fetchHomeSection()
+      setData(res)
+    })()
+
   }, []);
 
-  if (!isClient) {
-    return null;
-  }
 
   return (
     <Layout>
       <Hero />
       <AboutUs />
-      <Featured />
-      <Testimonials />
-      <Benefits />
+      <Featured data={data?.restaurants} />
+      <Testimonials data={data?.testimonials} />
+      <Benefits data={data?.benefits} />
       <Download />
     </Layout>
   )

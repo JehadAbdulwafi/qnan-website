@@ -50,6 +50,22 @@ const fetchContactMessages = async () => {
   return contactMessages;
 };
 
+
+const fetchFAQ = async () => {
+  const query = groq`*[_type == "faq"]{
+    question {
+      ar,
+      en
+    },
+    answer {
+      ar,
+      en
+    }
+  }`;
+  const contactMessages = await client.fetch(query);
+  return contactMessages;
+};
+
 const fetchHomeSection = async () => {
   const query = groq`
     *[_type == "home"][0] {
@@ -74,14 +90,22 @@ const fetchHomeSection = async () => {
   return homeSection;
 };
 
-const submitContactForm = async (data: { name: string; email: string; message: string }) => {
-  const { name, email, message } = data;
+const submitContactForm = async (data: {
+  fullName: string;
+  email: string;
+  phone: string;
+  country: string;
+  message: string;
+}) => {
+  const { fullName, email, phone, country, message } = data;
 
   try {
     const response = await client.create({
-      _type: 'contactMessage',
-      name,
+      _type: "contactMessage",
+      fullName,
       email,
+      phone,
+      country,
       message,
       date: new Date().toISOString(),
     });
@@ -93,15 +117,44 @@ const submitContactForm = async (data: { name: string; email: string; message: s
   }
 };
 
-const submitPartnerRequestForm = async (data: { name: string; email: string; message: string }) => {
-  const { name, email, message } = data;
+const submitPartnerRequestForm = async (data: {
+  fullName: string;
+  restaurantName: string;
+  restaurantDescription: string;
+  email: string;
+  phone: string;
+  country: string;
+  city: string;
+  area: string;
+  activityType: "homeKitchen" | "restaurantCafe" | "bakery" | "company";
+  cuisineType: "hot" | "sweet" | "juice" | "hotSweet";
+}) => {
+  const {
+    fullName,
+    restaurantName,
+    restaurantDescription,
+    email,
+    phone,
+    country,
+    city,
+    area,
+    activityType,
+    cuisineType,
+  } = data;
 
   try {
     const response = await client.create({
-      _type: 'partnerRequest',
-      name,
+      _type: "partnerRequest",
+      fullName,
+      restaurantName,
+      restaurantDescription,
       email,
-      message,
+      phone,
+      country,
+      city,
+      area,
+      activityType,
+      cuisineType,
     });
 
     return response;
@@ -110,12 +163,12 @@ const submitPartnerRequestForm = async (data: { name: string; email: string; mes
     throw error;
   }
 };
-
 export {
   fetchPrivacyPolicy,
   fetchTermsOfService,
   fetchPartnerRequests,
   fetchContactMessages,
+  fetchFAQ,
   fetchHomeSection,
   submitContactForm,
   submitPartnerRequestForm

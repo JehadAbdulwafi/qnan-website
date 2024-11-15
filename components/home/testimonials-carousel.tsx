@@ -11,10 +11,10 @@ import { useTranslation } from "react-i18next";
 import Autoplay from "embla-carousel-autoplay";
 import { cn } from "@/lib/utils";
 import { Quote, Star } from "lucide-react";
+import { Home } from "@/sanity.types";
+import { getTitle } from "@/lib/getTitle";
 
-const list = Array.from({ length: 8 });
-
-export function TestimonialsCarousel() {
+export function TestimonialsCarousel({ data }: { data: Home['testimonials'] }) {
   const { i18n } = useTranslation();
   const [_api, setApi] = React.useState<CarouselApi>();
 
@@ -33,16 +33,16 @@ export function TestimonialsCarousel() {
         className="w-full"
       >
         <CarouselContent>
-          {list.map((_, index) => (
+          {data?.map((item, index) => (
             <CarouselItem
               key={index}
               className="w-full md:basis-1/2"
             >
-              <div className="p-1">
-                <Card>
-                  <CardContent className="flex flex-row items- p-6">
+              <div className="p-1  h-full">
+                <Card className="h-full w-full flex flex-col">
+                  <CardContent className="flex flex-row h-full items- p-6">
                     <Quote className="fill-sky-500 stroke-[0]" size={32} />
-                    <div className="flex flex-col items-center justify-center gap-3">
+                    <div className="flex flex-1 flex-col items-center justify-center gap-3">
                       <div className="flex flex-row gap-0.5 items-center">
                         <Star className="fill-sky-500 stroke-[0]" />
                         <Star className="fill-sky-500 stroke-[0]" />
@@ -50,12 +50,11 @@ export function TestimonialsCarousel() {
                         <Star className="fill-sky-500 stroke-[0]" />
                         <Star className="fill-sky-500 stroke-[0]" />
                       </div>
-                      <p className="text-pretty text-md font-medium text-center">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Suspendisse varius enim in eros elementum tristique.
+                      <p className="line-clamp-3 text-pretty text-md my-auto font-medium text-center">
+                        {getTitle(item.feedback!, i18n.language)}
                       </p>
-                      <p className="text-pretty text-lg font-medium text-sky-500">
-                        John Doe
+                      <p className="text-pretty mt-auto text-lg font-medium text-sky-500">
+                        {getTitle(item.name!, i18n.language)}
                       </p>
                     </div>
                     <Quote size={32} className="fill-sky-500 stroke-[0] transform scale-x-[-1] mt-auto" />

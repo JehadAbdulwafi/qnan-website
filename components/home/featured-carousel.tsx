@@ -5,18 +5,18 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
   type CarouselApi,
 } from "@/components/ui/carousel";
 import { useTranslation } from "react-i18next";
 import Autoplay from "embla-carousel-autoplay";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { Home } from "@/sanity.types";
 
-const list = Array.from({ length: 8 });
+import { urlFor } from "@/lib/image";
+import { getTitle } from "@/lib/getTitle";
 
-export function FeaturedCarousel() {
+export function FeaturedCarousel({ data }: { data: Home['restaurants'] }) {
   const { i18n } = useTranslation();
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
@@ -62,7 +62,7 @@ export function FeaturedCarousel() {
         className="w-full"
       >
         <CarouselContent>
-          {list.map((_, index) => (
+          {data?.map((item, index) => (
             <CarouselItem
               key={index}
               className="w-full md:basis-1/2 lg:basis-1/4"
@@ -74,7 +74,7 @@ export function FeaturedCarousel() {
                 <CardContent className="flex flex-col text-white bg-transparent aspect-square p-0 m-0 rounded-none">
                   <div className="relative h-80 w-full">
                     <Image
-                      src={"https://picsum.photos/200"}
+                      src={urlFor(item.logo?.asset?._ref!).url()}
                       alt="benefit"
                       objectFit="cover"
                       fill
@@ -82,9 +82,9 @@ export function FeaturedCarousel() {
                     />
                   </div>
 
-                  <h2 className={cn("text-3xl pt-6 pb-3")}> Benefit {index + 1}</h2>
-                  <p className="mt-1 text-pretty text-lg font-medium">
-                    Lorem ipsum dolor sit amet
+                  <h2 className={cn("text-2xl pt-6 pb-2 text-pretty font-medium")}>{getTitle(item.name!, i18n.language)}</h2>
+                  <p className=" text-pretty text-md my-auto font-medium">
+                    {getTitle(item?.description!, i18n.language)}
                   </p>
                 </CardContent>
               </Card>
