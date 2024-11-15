@@ -7,19 +7,36 @@ import Image from "next/image";
 import googlePlayBadge from "@/public/images/stores/google-play-badge.svg";
 import appleStoreBadge from "@/public/images/stores/app-store-badge.svg";
 import { Facebook, Instagram, Twitter } from "lucide-react";
+import NLink from "./link";
 
 const data = [
   {
     title: "about",
-    links: ["about_us", "contact_us", "faq"],
+    links: [
+      {
+        title: "become_a_partner",
+        href: "/add-your-restaurant",
+      }, {
+        title: "contact_us",
+        href: "/contact-us",
+      },
+      {
+        title: "faq",
+        href: "/faq",
+      }
+    ],
   },
   {
     title: "legal",
-    links: ["terms_of_service", "privacy_policy"],
-  },
-  {
-    title: "join_us",
-    links: ["become_a_partner", "sign_up"],
+    links: [
+      {
+        title: "terms_of_service",
+        href: "/terms-of-service",
+      }, {
+        title: "privacy_policy",
+        href: "/privacy-policy",
+      }
+    ],
   },
 ]
 
@@ -34,7 +51,7 @@ export const Footer = () => {
       {/* Upper Section with Logo and Description */}
       <div className="bg-[#0b1121] z-50 py-10">
         <div className="flex flex-col container z-50 md:flex-row items-start gap-4">
-          <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 mb-4 flex-1 text-white">
+          <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4 mb-4 flex-1 text-white">
             <div className="flex flex-1 flex-col gap-3">
               <h5 className="text-xl pb-4 text-white">Download Qnan</h5>
               <Image
@@ -53,9 +70,11 @@ export const Footer = () => {
                 <h5 className="text-xl pb-4">{t(item.title)}</h5>
                 <ul className="flex flex-col gap-1">
                   {item.links.map((link) => (
-                    <li className="text-sm" key={link}>
-                      {t(link)}
-                    </li>
+                    <NLink href={link.href}>
+                      <li className="text-sm" key={link.title}>
+                        {t(link.title)}
+                      </li>
+                    </NLink>
                   ))}
                 </ul>
               </div>
