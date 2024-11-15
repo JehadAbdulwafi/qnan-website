@@ -1,5 +1,4 @@
 "use client";
-import Link from "next/link"
 import {
   BellDot,
   Crown,
@@ -18,6 +17,7 @@ import {
 import { Button } from "@/components/ui/button"
 
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import NLink from "../link";
 export const sidebar_items = [
   {
     header_label: "Dashboard",
@@ -110,23 +110,23 @@ export default function HeaderSheet() {
       </SheetTrigger>
       <SheetContent side="left" className="sm:max-w-xs">
         <nav className="grid gap-6 text-lg font-medium">
-          <Link
+          <NLink
             key={"1"}
             href="#"
             className="group flex h-10 w-10 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:text-base"
           >
             <Package2 className="h-5 w-5 transition-all group-hover:scale-110" />
             <span className="sr-only">Acme Inc</span>
-          </Link>
+          </NLink>
           {sidebar_items[0].items.map((item) => {
             return (
-              <Link
+              <NLink
                 key={item.label}
                 href={item.href}
                 className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
               >
                 {item.label}
-              </Link>
+              </NLink>
             )
           })}
         </nav>

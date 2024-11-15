@@ -1,10 +1,10 @@
 import Image from "next/image";
-import Link from "next/link";
 import LogoSvg from "@/public/qnan-text-sky.svg";
+import NLink from "../link";
 
 export default function Logo() {
   return (
-    <Link href="/" legacyBehavior passHref>
+    <NLink href="/" legacyBehavior passHref>
       <div>
         <Image
           priority
@@ -14,7 +14,7 @@ export default function Logo() {
           alt="Qnan Icon"
         />
       </div>
-    </Link>
+    </NLink>
 
   )
 }

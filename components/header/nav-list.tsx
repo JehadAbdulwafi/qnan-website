@@ -1,6 +1,5 @@
 "use client";
 import * as React from "react";
-import Link from "next/link";
 
 import {
   NavigationMenu,
@@ -12,6 +11,7 @@ import {
 import { useTranslation } from "react-i18next";
 import { dir } from "i18next";
 import { cn } from "@/lib/utils";
+import NLink from "../link";
 
 export default function NavList() {
   const { t, i18n } = useTranslation("common");
@@ -19,32 +19,25 @@ export default function NavList() {
     <NavigationMenu dir={dir(i18n.language)} className={cn("hidden md:flex")}>
       <NavigationMenuList>
         <NavigationMenuItem>
-          <Link href="/" legacyBehavior passHref>
+          <NLink href="/" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
               {t("home")}
             </NavigationMenuLink>
-          </Link>
+          </NLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <Link href="/" legacyBehavior passHref>
+          <NLink href="/add-your-restaurant" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              {t("services")}
+              {t("add_your_restaurant")}
             </NavigationMenuLink>
-          </Link>
+          </NLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <Link href="/" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              {t("about_us")}
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <Link href="/" legacyBehavior passHref>
+          <NLink href="/contact-us" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
               {t("contact_us")}
             </NavigationMenuLink>
-          </Link>
+          </NLink>
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>

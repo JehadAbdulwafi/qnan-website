@@ -2,11 +2,11 @@ import React from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-const LinkComponent = ({
+const NLink = ({
   children,
   skipLocaleHandling,
   ...rest
-}) => {
+}: React.PropsWithChildren<any>) => {
   const router = useRouter()
   const locale = rest.locale || router.query.locale || ''
 
@@ -27,4 +27,4 @@ const LinkComponent = ({
   )
 }
 
-export default LinkComponent
+export default NLink
