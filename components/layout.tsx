@@ -3,6 +3,7 @@ import { Footer } from './footer'
 import localFont from "next/font/local";
 import { dir } from 'i18next';
 import Header from './header';
+import { useEffect, useState } from 'react';
 
 const geistSans = localFont({
   src: "../public/fonts/GeistVF.woff",
@@ -19,6 +20,15 @@ export default function Layout({ children }: Readonly<{
   children: React.ReactNode;
 }>) {
   const { i18n } = useTranslation(['common'])
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return null;
+  }
 
   return (
     <div dir={dir(i18n.language)} className={`${geistSans.variable} ${geistMono.variable}`}>
