@@ -9,9 +9,12 @@ import Testimonials from '@/components/home/testimonials';
 import Benefits from '@/components/home/benefits';
 import { fetchHomeSection } from '@/lib/queries';
 import { Home } from '@/sanity.types';
+import Head from 'next/head';
+import { useTranslation } from 'react-i18next';
 
 
 const Homepage = () => {
+  const { t } = useTranslation('common');
   const [data, setData] = useState<Home>()
 
   useEffect(() => {
@@ -25,6 +28,12 @@ const Homepage = () => {
 
   return (
     <Layout>
+      <Head>
+        <title>
+          {t("home_title")}
+        </title>
+        <meta name="description" content={` ${t("banner-title")} ${t("banner-desc")}`} />
+      </Head>
       <Hero />
       <AboutUs />
       <Featured data={data?.restaurants} />

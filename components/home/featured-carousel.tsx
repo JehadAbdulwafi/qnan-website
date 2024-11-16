@@ -74,7 +74,7 @@ export function FeaturedCarousel({ data }: { data: Home['restaurants'] }) {
                 <CardContent className="flex flex-col text-white bg-transparent aspect-square p-0 m-0 rounded-none">
                   <div className="relative h-80 w-full">
                     <Image
-                      src={urlFor(item.logo?.asset?._ref!).url()}
+                      src={urlFor(item.logo?.asset?._ref as string).url()}
                       alt="benefit"
                       objectFit="cover"
                       fill
@@ -82,9 +82,9 @@ export function FeaturedCarousel({ data }: { data: Home['restaurants'] }) {
                     />
                   </div>
 
-                  <h2 className={cn("text-2xl pt-6 pb-2 text-pretty font-medium")}>{getTitle(item.name!, i18n.language)}</h2>
+                  <h2 className={cn("text-2xl pt-6 pb-2 text-pretty font-medium")}>{getTitle(item.name, i18n.language)}</h2>
                   <p className=" text-pretty text-md my-auto font-medium">
-                    {getTitle(item?.description!, i18n.language)}
+                    {getTitle(item?.description, i18n.language)}
                   </p>
                 </CardContent>
               </Card>

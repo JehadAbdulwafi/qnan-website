@@ -19,6 +19,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { useTranslation } from 'react-i18next';
 import { submitContactForm } from '@/lib/queries';
+import Head from 'next/head';
 
 const formSchema = z.object({
   fullName: z
@@ -63,6 +64,12 @@ const AddRestaurantPage = () => {
 
   return (
     <Layout>
+      <Head>
+        <title>
+          {t("contact_title")}
+        </title>
+        <meta name="description" content={`${t("contact_us")} ${t("contact_us_desc")}`} />
+      </Head>
       <section className="section-dark">
         <div className='container'>
           <div>
@@ -70,14 +77,14 @@ const AddRestaurantPage = () => {
           </div>
         </div>
       </section>
-      <div className="container">
+      <div className="container my-4">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <Card x-chunk="dashboard-07-chunk-0">
               <CardHeader>
-                <CardTitle>{t("restaurant_details")}</CardTitle>
+                <CardTitle>{t("contact_us")}</CardTitle>
                 <CardDescription>
-                  {t("restaurant_details_desc")}
+                  {t("contact_us_desc")}
                 </CardDescription>
               </CardHeader>
               <CardContent>

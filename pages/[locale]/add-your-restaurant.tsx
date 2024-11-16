@@ -21,6 +21,32 @@ import { useTranslation } from 'react-i18next';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { getTitle } from '@/lib/getTitle';
 import { submitPartnerRequestForm } from '@/lib/queries';
+import { Separator } from '@/components/ui/separator';
+import Image from 'next/image';
+import Head from 'next/head';
+
+const points = [
+  {
+    point: "financial_gain",
+    desc: "financial_gain_desc",
+  },
+  {
+    point: "wide_recognition",
+    desc: "wide_recognition_desc",
+  },
+  {
+    point: "direct_communication",
+    desc: "direct_communication_desc",
+  },
+  {
+    point: "ease_of_use",
+    desc: "ease_of_use_desc",
+  },
+  {
+    point: "continuous_support",
+    desc: "continuous_support_desc",
+  },
+];
 
 const activityType = [
   {
@@ -127,6 +153,12 @@ const AddRestaurantPage = () => {
 
   return (
     <Layout>
+      <Head>
+        <title>
+          {t("restaurant_title")}
+        </title>
+        <meta name="description" content={`${t("add_restaurant_title")} ${t("add_restaurnat_desc")}`} />
+      </Head>
       <section className="section-dark">
         <div className='container'>
           <div>
@@ -134,192 +166,230 @@ const AddRestaurantPage = () => {
           </div>
         </div>
       </section>
-      <div className="container">
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-            <Card x-chunk="dashboard-07-chunk-0">
-              <CardHeader>
-                <CardTitle>{t("restaurant_details")}</CardTitle>
-                <CardDescription>
-                  {t("restaurant_details_desc")}
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="grid gap-6">
-                  <FormField
-                    control={form.control}
-                    name="fullName"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>{t("full_name")}</FormLabel>
-                        <FormControl>
-                          <Input placeholder={t("enter_full_name")} {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="restaurantName"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>{t("restaurant_name")}</FormLabel>
-                        <FormControl>
-                          <Input placeholder={t("enter_restaurant_name")} {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>{t("email")}</FormLabel>
-                        <FormControl>
-                          <Input placeholder={t("enter_email")} {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="phone"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>{t("phone")}</FormLabel>
-                        <FormControl>
-                          <Input placeholder={t("enter_phone")} {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="country"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>{t("country")}</FormLabel>
-                        <FormControl>
-                          <Input placeholder={t("enter_country")} {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="city"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>{t("city")}</FormLabel>
-                        <FormControl>
-                          <Input placeholder={t("entrt_city")} {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="area"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>{t("area")}</FormLabel>
-                        <FormControl>
-                          <Input placeholder={t("entrt_area")} {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="activityType"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>{t("activity_type")}</FormLabel>
-                        <FormControl>
-                          <Select
-                            onValueChange={(value) => {
-                              field.onChange(value)
-                            }}
-                            value={field.value}
-                            defaultValue={activityType[0].key}
-                          >
-                            <SelectTrigger>
-                              <SelectValue placeholder />
-                            </SelectTrigger>
-                            <SelectContent>
-                              {activityType.map((type) => (
-                                <SelectItem key={type.key} value={type.key}>
-                                  {getTitle(type, i18n.language)}
-                                </SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+      <div className="container grid gap-4 grid-cols-2 my-4">
+        <div className="grid gap-3">
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+              <Card x-chunk="dashboard-07-chunk-0">
+                <CardHeader>
+                  <CardTitle>{t("add_restaurant_title")}</CardTitle>
+                  <CardDescription>
+                    {t("add_restaurnat_desc")}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid gap-6">
+                    <FormField
+                      control={form.control}
+                      name="fullName"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>{t("full_name")}</FormLabel>
+                          <FormControl>
+                            <Input placeholder={t("enter_full_name")} {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="restaurantName"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>{t("restaurant_name")}</FormLabel>
+                          <FormControl>
+                            <Input placeholder={t("enter_restaurant_name")} {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="email"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>{t("email")}</FormLabel>
+                          <FormControl>
+                            <Input placeholder={t("enter_email")} {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="phone"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>{t("phone")}</FormLabel>
+                          <FormControl>
+                            <Input placeholder={t("enter_phone")} {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="country"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>{t("country")}</FormLabel>
+                          <FormControl>
+                            <Input placeholder={t("enter_country")} {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="city"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>{t("city")}</FormLabel>
+                          <FormControl>
+                            <Input placeholder={t("entrt_city")} {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="area"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>{t("area")}</FormLabel>
+                          <FormControl>
+                            <Input placeholder={t("entrt_area")} {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="activityType"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>{t("activity_type")}</FormLabel>
+                          <FormControl>
+                            <Select
+                              onValueChange={(value) => {
+                                field.onChange(value)
+                              }}
+                              value={field.value}
+                              defaultValue={activityType[0].key}
+                            >
+                              <SelectTrigger>
+                                <SelectValue placeholder />
+                              </SelectTrigger>
+                              <SelectContent>
+                                {activityType.map((type) => (
+                                  <SelectItem key={type.key} value={type.key}>
+                                    {getTitle(type, i18n.language)}
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
 
-                  <FormField
-                    control={form.control}
-                    name="cuisineType"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>{t("cuisine_type")}</FormLabel>
-                        <FormControl>
-                          <Select
-                            onValueChange={(value) => {
-                              field.onChange(value)
-                            }}
-                            value={field.value}
-                            defaultValue={cuisineType[0].key}
-                          >
-                            <SelectTrigger>
-                              <SelectValue placeholder />
-                            </SelectTrigger>
-                            <SelectContent>
-                              {cuisineType.map((type) => (
-                                <SelectItem key={type.key} value={type.key}>
-                                  {getTitle(type, i18n.language)}
-                                </SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+                    <FormField
+                      control={form.control}
+                      name="cuisineType"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>{t("cuisine_type")}</FormLabel>
+                          <FormControl>
+                            <Select
+                              onValueChange={(value) => {
+                                field.onChange(value)
+                              }}
+                              value={field.value}
+                              defaultValue={cuisineType[0].key}
+                            >
+                              <SelectTrigger>
+                                <SelectValue placeholder />
+                              </SelectTrigger>
+                              <SelectContent>
+                                {cuisineType.map((type) => (
+                                  <SelectItem key={type.key} value={type.key}>
+                                    {getTitle(type, i18n.language)}
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
 
-                  <FormField
-                    control={form.control}
-                    name="restaurantDescription"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>{t("restaurant_desc")}</FormLabel>
-                        <FormControl>
-                          <Textarea className="min-h-32" placeholder={t("entrt_restaurant_desc")} {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <div className="flex justify-end">
-                    <Button type="submit">{t("save")}</Button>
+                    <FormField
+                      control={form.control}
+                      name="restaurantDescription"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>{t("restaurant_desc")}</FormLabel>
+                          <FormControl>
+                            <Textarea className="min-h-32" placeholder={t("entrt_restaurant_desc")} {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <div className="flex justify-end">
+                      <Button type="submit">{t("save")}</Button>
+                    </div>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
-          </form>
-        </Form>
+                </CardContent>
+              </Card>
+            </form>
+          </Form>
+
+        </div>
+        <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-3">
+            <h2 className="text-pretty text-lg font-bold">
+              {t("add_restaurant_sec1_title")}
+            </h2>
+            <p className="text-pretty text-md font-medium">
+              {t("add_restaurant_sec1_desc")}
+            </p>
+          </div>
+          <Separator />
+
+          <div className="flex flex-col gap-3">
+            <div className="w-full relative flex-1 mx-auto flex-grow">
+              <Image
+                src={require("@/public/images/iphone-3.png")}
+                alt="iphone"
+                className="w-full object-contain relative top-0"
+              />
+            </div>
+            <h2 className="text-pretty text-lg font-bold">
+              {t("add_restaurant_sec2_title")}
+            </h2>
+            <ul className="flex flex-col gap-3">
+              {points.map((point) => (
+                <li key={point.point}>
+                  <p className="text-pretty text-md font-medium">
+                    <strong>{t(point.point)}:</strong> {" "}
+                    {t(point.desc)}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+        </div>
       </div>
     </Layout>
   )

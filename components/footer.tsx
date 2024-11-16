@@ -14,7 +14,7 @@ const data = [
     title: "about",
     links: [
       {
-        title: "become_a_partner",
+        title: "add_your_restaurant",
         href: "/add-your-restaurant",
       }, {
         title: "contact_us",
@@ -66,11 +66,11 @@ export const Footer = () => {
               />
             </div>
             {data.map((item) => (
-              <div className="col-span-1">
+              <div key={item.title} className="col-span-1">
                 <h5 className="text-xl pb-4">{t(item.title)}</h5>
                 <ul className="flex flex-col gap-1">
                   {item.links.map((link) => (
-                    <NLink href={link.href}>
+                    <NLink key={link.href} href={link.href}>
                       <li className="text-sm" key={link.title}>
                         {t(link.title)}
                       </li>

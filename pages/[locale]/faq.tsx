@@ -6,6 +6,7 @@ import { fetchFAQ } from "@/lib/queries";
 import { Faq } from "@/sanity.types";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import Head from "next/head";
 
 export default function FaqPage() {
   const { t, i18n } = useTranslation();
@@ -29,6 +30,12 @@ export default function FaqPage() {
 
   return (
     <Layout>
+      <Head>
+        <title>
+          {t("faq_title")}
+        </title>
+        <meta name="description" content={`${t('faq')}`} />
+      </Head>
       <section className="section-dark">
         <div className='container'>
           <div>
@@ -37,13 +44,13 @@ export default function FaqPage() {
         </div>
       </section>
       <div className="container min-h-96">
-        <h1 className="text-xl font-medium my-4">{t('benefits-title')}</h1>
+        <h1 className="text-xl font-medium my-4">{t('faq')}</h1>
         <Accordion type="single" className="w-full">
           {data?.map((faq) => (
-            <AccordionItem value={faq.question?.en!}>
-              <AccordionTrigger>{getTitle(faq.question!, i18n.language)}</AccordionTrigger>
+            <AccordionItem key={faq._id} value={faq.question?.en as string}>
+              <AccordionTrigger>{getTitle(faq.question, i18n.language)}</AccordionTrigger>
               <AccordionContent>
-                {getTitle(faq.answer!, i18n.language)}
+                {getTitle(faq.answer, i18n.language)}
               </AccordionContent>
             </AccordionItem>
           ))}

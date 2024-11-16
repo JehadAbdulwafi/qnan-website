@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import { dir } from 'i18next';
 import Header from './header';
 import { useEffect, useState } from 'react';
+import Head from 'next/head';
 
 const geistSans = localFont({
   src: "../public/fonts/GeistVF.woff",
@@ -32,6 +33,9 @@ export default function Layout({ children }: Readonly<{
 
   return (
     <div dir={dir(i18n.language)} className={`${geistSans.variable} ${geistMono.variable}`}>
+      <Head>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <Header />
       <main>{children}</main>
       <Footer />

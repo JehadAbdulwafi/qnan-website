@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import { PortableText } from "@portabletext/react";
 import { getContent } from "@/lib/getContent";
 import { components } from "@/lib/portableStyledComponents";
+import Head from "next/head";
 
 export default function PrivacyPolicyPage() {
   const { t, i18n } = useTranslation();
@@ -26,6 +27,11 @@ export default function PrivacyPolicyPage() {
 
   return (
     <Layout>
+      <Head>
+        <title>
+          {t("privacy_title")}
+        </title>
+      </Head>
       <section className="section-dark">
         <div className="container">
           <div>
@@ -33,9 +39,9 @@ export default function PrivacyPolicyPage() {
           </div>
         </div>
       </section>
-      <div className="container min-h-96">
+      <div className="container min-h-96 my-4">
         <PortableText
-          value={getContent(data?.content!, i18n.language)!}
+          value={getContent(data?.content, i18n.language)!}
           components={components}
         />
       </div>
