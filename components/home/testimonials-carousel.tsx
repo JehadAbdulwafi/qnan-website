@@ -5,7 +5,6 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  type CarouselApi,
 } from "@/components/ui/carousel";
 import { useTranslation } from "react-i18next";
 import Autoplay from "embla-carousel-autoplay";
@@ -16,14 +15,12 @@ import { getTitle } from "@/lib/getTitle";
 
 export function TestimonialsCarousel({ data }: { data: Home['testimonials'] }) {
   const { i18n } = useTranslation();
-  const [_api, setApi] = React.useState<CarouselApi>();
 
   const isRTL = i18n.language === "ar";
 
   return (
     <div className={cn("select-none", { "rtl-carousel": isRTL })}>
       <Carousel
-        setApi={setApi}
         opts={{
           loop: true,
           align: "start",
