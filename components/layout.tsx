@@ -32,12 +32,14 @@ export default function Layout({ children }: Readonly<{
   }
 
   return (
-    <div dir={dir(i18n.language)} className={`${geistSans.variable} ${geistMono.variable}`}>
+    <div dir={dir(i18n.language)} className={`${geistSans.variable} ${geistMono.variable} flex flex-col min-h-screen`}>
       <Head>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <main>{children}</main>
+      <main className="flex-1">
+        {children}
+      </main>
       <Footer />
     </div>
   )

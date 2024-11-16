@@ -7,6 +7,7 @@ import { Faq } from "@/sanity.types";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import Head from "next/head";
+import Loader from "@/components/loader";
 
 export default function FaqPage() {
   const { t, i18n } = useTranslation();
@@ -23,11 +24,6 @@ export default function FaqPage() {
     })()
   }, []);
 
-
-  if (loading) return <div className="text-center">Loading...</div>;
-
-
-
   return (
     <Layout>
       <Head>
@@ -43,19 +39,22 @@ export default function FaqPage() {
           </div>
         </div>
       </section>
-      <div className="container min-h-96">
-        <h1 className="text-xl font-medium my-4">{t('faq')}</h1>
-        <Accordion type="single" className="w-full">
-          {data?.map((faq) => (
-            <AccordionItem key={faq._id} value={faq.question?.en as string}>
-              <AccordionTrigger>{getTitle(faq.question, i18n.language)}</AccordionTrigger>
-              <AccordionContent>
-                {getTitle(faq.answer, i18n.language)}
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
-      </div>
+      {loading ? <Loader /> : (
+        <div className="container">
+          <h1 className="text-xl font-medium my-4">{t('faq')}</h1>
+          <Accordion type="single" className="w-full">
+            {data?.map((faq) => (
+              <AccordionItem key={faq._id} value={faq.question?.en as string}>
+                <AccordionTrigger>{getTitle(faq.question, i18n.language)}</AccordionTrigger>
+                <AccordionContent>
+                  {getTitle(faq.answer, i18n.language)}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+
+      )}
     </Layout>
   )
 }

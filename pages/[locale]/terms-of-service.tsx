@@ -8,6 +8,7 @@ import { PortableText } from "@portabletext/react";
 import { getContent } from "@/lib/getContent";
 import { components } from "@/lib/portableStyledComponents";
 import Head from "next/head";
+import Loader from "@/components/loader";
 
 export default function TermsOfServicePage() {
   const { t, i18n } = useTranslation();
@@ -23,8 +24,6 @@ export default function TermsOfServicePage() {
     })();
   }, []);
 
-  if (loading) return <div className="text-center">Loading...</div>;
-
   return (
     <Layout>
       <Head>
@@ -39,12 +38,15 @@ export default function TermsOfServicePage() {
           </div>
         </div>
       </section>
-      <div className="container min-h-96 my-4">
-        <PortableText
-          value={getContent(data?.content, i18n.language)!}
-          components={components}
-        />
-      </div>
+
+      {loading ? <Loader /> : (
+        <div className="container min-h-96 my-4">
+          <PortableText
+            value={getContent(data?.content, i18n.language)!}
+            components={components}
+          />
+        </div>
+      )}
     </Layout>
   );
 }
