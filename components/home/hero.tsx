@@ -1,9 +1,7 @@
 import Image from 'next/image'
 import React from 'react'
-import { useTranslation } from 'react-i18next'
 
 export default function Hero() {
-  const { t } = useTranslation('common');
 
   return (
     <div
@@ -20,7 +18,7 @@ export default function Hero() {
         </div>
         <div className="w-full absolute h-[75%] -bottom-24 sm:-bottom-40">
           <Image
-            src={require("../../public/images/iphone-3.png")}
+            src={require("../../public/images/iphone-3.webp")}
             alt="iphone"
             fill
             className="object-contain"

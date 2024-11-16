@@ -369,7 +369,7 @@ const AddRestaurantPage = () => {
           <div className="flex flex-col gap-3">
             <div className="w-full relative flex-1 mx-auto flex-grow">
               <Image
-                src={require("@/public/images/iphone-3.png")}
+                src={require("@/public/images/iphone-3.webp")}
                 alt="iphone"
                 className="w-full object-contain relative top-0"
               />

@@ -36,7 +36,7 @@ export default function Download() {
           </div>
           <div className="min-h-[200px] flex-1 relative hidden md:block">
             <Image
-              src={require("../../public/images/iphone-1.png")}
+              src={require("../../public/images/iphone-1.webp")}
               alt="iphone"
               width={800}
               height={800}
