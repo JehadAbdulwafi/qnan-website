@@ -25,7 +25,7 @@ export default function Hero() {
             src={require("../../public/images/iphone-3.png")}
             alt="iphone"
             fill
-            className="w-full object-contain scale-125"
+            className="w-full object-contain"
           />
         </div>
         </div>
