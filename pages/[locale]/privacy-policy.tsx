@@ -31,7 +31,7 @@ export default function PrivacyPolicyPage() {
           {t("privacy_title")}
         </title>
       </Head>
-      <section className="section-dark">
+      <section className="section-dark mt-14 sm:mt-0">
         <div className="container">
           <div>
             <h2 className="section-title">{t("privacy_policy")}</h2>

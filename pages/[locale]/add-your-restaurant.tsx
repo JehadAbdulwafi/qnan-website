@@ -159,14 +159,14 @@ const AddRestaurantPage = () => {
         </title>
         <meta name="description" content={`${t("add_restaurant_title")} ${t("add_restaurnat_desc")}`} />
       </Head>
-      <section className="section-dark">
+      <section className="section-dark mt-14 sm:mt-0">
         <div className='container'>
           <div>
             <h2 className='section-title'>{t('add_your_restaurant')}</h2>
           </div>
         </div>
       </section>
-      <div className="container grid gap-4 grid-cols-2 my-4">
+      <div className="container grid gap-4 sm:grid-cols-2 my-4">
         <div className="grid gap-3">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">

@@ -70,7 +70,7 @@ const AddRestaurantPage = () => {
         </title>
         <meta name="description" content={`${t("contact_us")} ${t("contact_us_desc")}`} />
       </Head>
-      <section className="section-dark">
+      <section className="section-dark mt-14 sm:mt-0">
         <div className='container'>
           <div>
             <h2 className='section-title'>{t('contact_us')}</h2>

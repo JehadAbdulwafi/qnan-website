@@ -32,7 +32,7 @@ export default function FaqPage() {
         </title>
         <meta name="description" content={`${t('faq')}`} />
       </Head>
-      <section className="section-dark">
+      <section className="section-dark mt-14 sm:mt-0">
         <div className='container'>
           <div>
             <h2 className='section-title'>{t('faq')}</h2>

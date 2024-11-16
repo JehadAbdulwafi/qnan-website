@@ -31,7 +31,7 @@ export default function TermsOfServicePage() {
           {t("terms_title")}
         </title>
       </Head>
-      <section className="section-dark">
+      <section className="section-dark mt-14 sm:mt-0">
         <div className="container">
           <div>
             <h2 className="section-title">{t("terms_of_service")}</h2>
