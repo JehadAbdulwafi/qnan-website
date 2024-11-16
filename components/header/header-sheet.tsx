@@ -1,105 +1,49 @@
 "use client";
 import {
-  BellDot,
-  Crown,
-  Home,
-  LayoutDashboard,
-  Package2,
   PanelLeft,
-  ShoppingCart,
-  StoreIcon,
-  Ticket,
-  Truck,
-  Tv2,
-  Users2,
 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import NLink from "../link";
+import { useTranslation } from "react-i18next";
+import LogoSvg from "@/public/logo-96x96-skyblue.svg";
+import Image from "next/image";
+
 export const sidebar_items = [
   {
-    header_label: "Dashboard",
-    items: [
-      {
-        label: "Overview",
-        href: "/dashboard",
-        icon: (
-          <Home className="h-5 w-5" />
-        )
-      },
+    label: "home",
+    href: "/",
+  },
 
-      {
-        label: "Orders",
-        href: "/dashboard/orders",
-        icon: (
-          <ShoppingCart className="h-5 w-5" />
-        )
-      },
-      {
-        label: "Restaurants",
-        href: "/dashboard/restaurants",
-        icon: (
-          <StoreIcon className="h-5 w-5" />
-        )
-      },
-      {
-        label: "Deliveries",
-        href: "/dashboard/deliveries",
-        icon: (
-          <Truck className="h-5 w-5" />
-        )
-      },
-      {
-        label: "Users",
-        href: "/dashboard/users",
-        icon: (
-          <Users2 className="h-5 w-5" />
-        )
-      },
-      {
-        label: "Messaging",
-        href: "/dashboard/notifications",
-        icon: (
-          <BellDot className="h-5 w-5" />
-        )
-      },
-      {
-        label: "Coupons",
-        href: "/dashboard/coupons",
-        icon: (
-          <Ticket className="h-5 w-5" />
-        )
-      },
-      {
-        label: "Banners",
-        href: "/dashboard/banners",
-        icon: (
-          <Tv2 className="h-5 w-5" />
-        )
-      },
-      {
-        label: "Featured rows",
-        href: "/dashboard/featured",
-        icon: (
-          <Crown className="h-5 w-5" />
-        )
-      },
-      {
-        label: "Categories",
-        href: "/dashboard/categories",
-        icon: (
-          <LayoutDashboard className="h-5 w-5" />
-        )
-      },
-    ],
-  }
+  {
+    label: "add_your_restaurant",
+    href: "/add-your-restaurant",
+  },
+  {
+    label: "contact_us",
+    href: "/contact-us",
+  },
+  {
+    label: "faq",
+    href: "/faq",
+  },
+  {
+    label: "terms_of_service",
+    href: "/terms-of-service",
+  },
+  {
+    label: "privacy_policy",
+    href: "/privacy-policy",
+  },
 ]
 
 
 
 export default function HeaderSheet() {
+  const { t } = useTranslation("common");
+
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -112,20 +56,30 @@ export default function HeaderSheet() {
         <nav className="grid gap-6 text-lg font-medium">
           <NLink
             key={"1"}
-            href="#"
-            className="group flex h-10 w-10 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:text-base"
+            href="/"
+            className="group flex h-10 w-10 shrink-0 items-center justify-center gap-2 rounded-full text-lg font-semibold text-primary-foreground md:text-base"
           >
-            <Package2 className="h-5 w-5 transition-all group-hover:scale-110" />
-            <span className="sr-only">Acme Inc</span>
+            <div className="flex">
+              <Image
+                priority
+                src={LogoSvg}
+                width={32}
+                height={32}
+                alt="Qnan Icon"
+                className=""
+              />
+            </div>
+
           </NLink>
-          {sidebar_items[0].items.map((item) => {
+          {sidebar_items.map((item) => {
+
             return (
               <NLink
                 key={item.label}
                 href={item.href}
                 className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
               >
-                {item.label}
+                {t(item.label)}
               </NLink>
             )
           })}
