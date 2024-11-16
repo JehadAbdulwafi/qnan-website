@@ -1,12 +1,17 @@
-import React from 'react'
-import Link from 'next/link'
+import React, { AnchorHTMLAttributes } from 'react'
+import Link, { LinkProps } from 'next/link'
 import { useRouter } from 'next/router'
+
+type NLinkProps = LinkProps &
+  AnchorHTMLAttributes<HTMLAnchorElement> & {
+    skipLocaleHandling?: boolean;
+  };
 
 const NLink = ({
   children,
   skipLocaleHandling,
   ...rest
-}: React.PropsWithChildren<any>) => {
+}: NLinkProps) => {
   const router = useRouter()
   const locale = rest.locale || router.query.locale || ''
 
@@ -15,15 +20,13 @@ const NLink = ({
   if (locale && !skipLocaleHandling) {
     href = href
       ? `/${locale}${href}`
-      : router.pathname.replace('[locale]', locale)
+      : router.pathname.replace('[locale]', locale as string)
   }
 
   return (
-    <>
-      <Link href={href} legacyBehavior>
-        <a {...rest}>{children}</a>
-      </Link>
-    </>
+    <Link href={href} legacyBehavior>
+      <a {...rest}>{children}</a>
+    </Link>
   )
 }
 
