@@ -18,9 +18,9 @@ type Content = Array<{
   _key: string
 }>
 
-function getContent(content: { en?: Content; ar?: Content }, activeLang: string) {
-  const title = activeLang === 'en' ? content.en : content.ar;
-  return title || content.en || content.ar;
+function getContent(content?: { en?: Content; ar?: Content }, activeLang?: string) {
+  const title = activeLang === 'en' ? content?.en : content?.ar;
+  return title || content?.en || content?.ar;
 }
 
 export { getContent };
