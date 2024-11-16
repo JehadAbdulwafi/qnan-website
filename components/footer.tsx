@@ -8,6 +8,7 @@ import googlePlayBadge from "@/public/images/stores/google-play-badge.svg";
 import appleStoreBadge from "@/public/images/stores/app-store-badge.svg";
 import { Facebook, Instagram, Twitter } from "lucide-react";
 import NLink from "./link";
+import Link from "next/link";
 
 const data = [
   {
@@ -54,11 +55,13 @@ export const Footer = () => {
           <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4 mb-4 flex-1 text-white">
             <div className="flex flex-1 flex-col gap-3">
               <h5 className="text-xl pb-4 text-white">Download Qnan</h5>
-              <Image
-                src={googlePlayBadge}
-                alt="google play badge"
-                width={140}
-              />
+              <Link href={"https://play.google.com/store/apps/details?id=com.qnan.businessapp"} passHref target={"_blank"}>
+                <Image
+                  src={googlePlayBadge}
+                  alt="google play badge"
+                  width={140}
+                />
+              </Link>
               <Image
                 src={appleStoreBadge}
                 alt="apple store badge"

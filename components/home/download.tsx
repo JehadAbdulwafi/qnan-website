@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import googlePlayBadge from "../../public/images/stores/google-play-badge.svg";
 import appleStoreBadge from "../../public/images/stores/app-store-badge.svg";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 export default function Download() {
   const { t, i18n } = useTranslation("common");
@@ -22,11 +23,13 @@ export default function Download() {
               </p>
             </div>
             <div className="flex flex-row gap-2">
-              <Image
-                src={googlePlayBadge}
-                alt="google play badge"
-                width={140}
-              />
+              <Link href={"https://play.google.com/store/apps/details?id=com.qnan.businessapp"} passHref target={"_blank"}>
+                <Image
+                  src={googlePlayBadge}
+                  alt="google play badge"
+                  width={140}
+                />
+              </Link>
               <Image
                 src={appleStoreBadge}
                 alt="apple store badge"
